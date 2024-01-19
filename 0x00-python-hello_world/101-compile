@@ -1,0 +1,11 @@
+#!/bin/bash
+pyfile="$PYFILE"
+outputfile="${pyfile%.py}.pyc"
+
+echo "Compiling $pyfile ..."
+python3 -m compileall -b "$pyfile"
+
+if [ -e "__pycache__/$outputfile" ]; then
+mv "__pycache__/$outputfile" .
+rm -rf "__pycache__"
+fi
